@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Shapeshifter</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,900" rel="stylesheet">
+    <link rel="icon" type="image/png" href="public/favicon.png" />
+    <style media="screen">
+      canvas {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, #040F36, #030A24, #010412 );
+      }
+
+      body, html {
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        background: radial-gradient(circle, #040F36, #030A24, #010412 );
+      }
+
+      p {
+        margin: 0;
+        transition: all 0.3s ease;
+      }
+
+      #app {
+        width: 100vw;
+        height: 100%;
+      }
+      .stateButton {
+        display: inline-block;
+        position: absolute;
+        margin-top: -55px;
+        margin-left:14%;
+        font-size: 60px;
+        line-height: 78px;
+        top: 50%;
+        font-family: 'Playfair Display', serif;
+        font-weight: 400;
+        letter-spacing: 2px;
+        overflow: hidden;
+        transition: opacity 0.4s, transform 0.6s cubic-bezier(0,.02,.14,1);
+        transform: translateX(-700px);
+        opacity: 1;
+        background: 0;
+        padding: 0;
+        border: 0;
+      }
+
+      .stateButton:focus {
+        outline: 0;
+      }
+
+      .content {
+        overflow: hidden;
+        display: inline-block;
+        transition: all 0.3s;
+      }
+
+      .onhover {
+        color: #040F36;
+        font-weight: 500;
+        left: 0;
+        position: absolute;
+        z-index: 1;
+        background-color: white;
+        width: 100%;
+        height: 8px;
+        top: 43.5%;
+        overflow: hidden;
+        transition: width 0.3s ease;
+      }
+
+      .onhover p{
+        transform: translateY(-50%);
+        position: absolute;
+        top: 0;
+      }
+
+      .stateButton:hover .onhover {
+        width: 0;
+      }
+
+      .info{
+        position: absolute;
+        bottom: 30px;
+        left: 0;
+        width: 100%;
+        color: white;
+        font-size: 10.5px;
+        opacity: 0;
+        transition: opacity 1s cubic-bezier(0,.02,.45,.99);
+        transition-delay: 2.3s;
+        pointer-events: none;
+      }
+
+      .info p {
+        font-family: 'Poppins';
+        text-align: center;
+      }
+      .info span {
+        padding: 5px;
+        border: solid 1px white;
+        border-radius: 3px;
+      }
+
+      .clickto {
+        font-family: 'Poppins';
+        color:white;
+      }
+
+      .mobile {
+        display: none;
+        font-family: 'Poppins';
+        color:white;
+        text-align: center;
+      }
+
+      h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 60px;
+      }
+
+      .mobile span {
+        text-decoration: underline;
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app" style="position:absolute; z-index:1;">
+      <div class="mobile">
+        <h3>Sorry,</h3>
+        <p> Shapeshifter is not available on <span>mobile.</span> <br> Please launch it on desktop to be able to begin <br> the experiment</p>
+      </div>
+      <chose-color :app="app"></chose-color>
+      <chose-shape :app="app" :shapes="shapes"></chose-shape>
+      <button class="stateButton" v-on:click="click" style="color:white;  cursor: pointer;"><span class="content"><p>Play</p></span><span class="onhover"><p>Play</p></span></button>
+      <div class="info"><p>Press <span class="space">space</span> to change the shape and the color</p></div>
+    </div>
+    <script src="bundle.js"></script>
+  </body>
+</html>
