@@ -65403,7 +65403,7 @@ let createApp = function createApp() {
 		y:[],
 		z:[],
 	}
-
+	console.log('hello')
 	//create orbit controls
 	this.controls = createControls({
 		position : [0,0,0],
