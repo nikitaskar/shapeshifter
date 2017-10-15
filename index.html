@@ -93,7 +93,7 @@
         left: 0;
         width: 100%;
         color: white;
-        font-size: 10.5px;
+        font-size: 12px;
         opacity: 0;
         transition: opacity 1s cubic-bezier(0,.02,.45,.99);
         transition-delay: 2.3s;
@@ -131,6 +131,19 @@
         text-decoration: underline;
         font-size: 18px;
       }
+
+      .loading {
+        color: white;
+        font-family: 'Poppins';
+        color:white;
+        position: absolute;
+        top: 50%;
+        margin-top: -20px;
+        margin-left: 14%;
+        transition: opacity 0.4s, transform 0.6s cubic-bezier(0,.02,.14,1);
+        transform: translateX(-700px);
+        opacity: 0;
+      }
     </style>
   </head>
   <body>
@@ -141,6 +154,9 @@
       </div>
       <chose-color :app="app"></chose-color>
       <chose-shape :app="app" :shapes="shapes"></chose-shape>
+      <div class="loading">
+        Audio loading ...
+      </div>
       <button class="stateButton" v-on:click="click" style="color:white;  cursor: pointer;"><span class="content"><p>Play</p></span><span class="onhover"><p>Play</p></span></button>
       <div class="info"><p>Press <span class="space">space</span> to change the shape and the color</p></div>
     </div>

@@ -30,9 +30,25 @@ new Vue({
 		}
 	},
 
+	created() {
+		var  audioContext = createAudioContext();
+
+		this.audio = createPlayer('public/music.mp3', {
+			context : audioContext,
+		})
+
+		this.audio.on('load', () => {
+		  console.log('Audio loaded...')
+		  // start playing audio file
+		  this.audio.play()
+		})
+
+		this.audio.volume = 0.5;
+	},
+
 	methods: {
 		click(e){
-			let playButton = document.querySelector('.stateButton')
+			var playButton = document.querySelector('.stateButton')
 			playButton.style.transitionDelay="0s"
 			playButton.style.opacity = "0";
 
@@ -41,12 +57,6 @@ new Vue({
 			if (this.onPlay == false) {
 				self.onPlay = true;
 
-				var  audioContext = createAudioContext();
-
-				self.audio = createPlayer('public/music.mp3', {
-					context : audioContext,
-				})
-				self.audio.play()
 				var analyser = createAnalyser(self.audio.node, self.audio.context, {audible:true, stereo: false});
 				// animate();
 
@@ -85,13 +95,13 @@ new Vue({
 					const analyserNode = analyser.analyser;
 					const freqs = analyser.frequencies();
 
-					let avgKick = averageFrequency(analyserNode, freqs, 200, 300);
+					var avgKick = averageFrequency(analyserNode, freqs, 200, 300);
 					pKick = 0.6+avgKick;
 
-					let avgMelody = averageFrequency(analyserNode, freqs, 600, 700);
+					var avgMelody = averageFrequency(analyserNode, freqs, 600, 700);
 					pMelody = 0.4+avgMelody;
 
-					let avgSnare = averageFrequency(analyserNode, freqs, 1000, 1200);
+					var avgSnare = averageFrequency(analyserNode, freqs, 1000, 1200);
 					pSnare = 0.3+avgSnare;
 
 					for (var i = 0; i < self.app.spheres.length; i++) {
@@ -65403,7 +65413,7 @@ let createApp = function createApp() {
 		y:[],
 		z:[],
 	}
-	console.log('hello')
+
 	//create orbit controls
 	this.controls = createControls({
 		position : [0,0,0],
