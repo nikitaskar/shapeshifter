@@ -41,8 +41,8 @@ new Vue({
 		  // start playing audio file
 		  this.audio.play()
 		})
-
-		this.audio.volume = 0.5;
+		console.log('volume')
+		this.audio.volume = 0.3;
 	},
 
 	methods: {
@@ -52,8 +52,9 @@ new Vue({
 			playButton.style.opacity = "0";
 
 			self = this;
+			console.log(self.audio.volume);
 
-			if (this.onPlay == false) {
+			if (self.onPlay == false) {
 				self.onPlay = true;
 
 				var analyser = createAnalyser(self.audio.node, self.audio.context, {audible:true, stereo: false});
